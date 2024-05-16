@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Recommendation #<%= @the_recommendation.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/recommendations">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_recommendation/<%= @the_recommendation.id %>">
+          Delete recommendation
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_recommendation.user_id %>
+      </dd>
+
+      <dt>
+        Visit type
+      </dt>
+      <dd>
+        <%= @the_recommendation.visit_type %>
+      </dd>
+
+      <dt>
+        Interests
+      </dt>
+      <dd>
+        <%= @the_recommendation.interests %>
+      </dd>
+
+      <dt>
+        Other content
+      </dt>
+      <dd>
+        <%= @the_recommendation.other_content %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_recommendation.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_recommendation.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit recommendation
+    </h2>
+
+    <form action="/modify_recommendation/<%= @the_recommendation.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_recommendation.user_id %>">
+      </div>
+
+      <div>
+        <label for="visit_type_box">
+          Visit type
+        </label>
+
+        <input type="text" id="visit_type_box" name="query_visit_type" value="<%= @the_recommendation.visit_type %>">
+      </div>
+
+      <div>
+        <label for="interests_box">
+          Interests
+        </label>
+
+        <input type="text" id="interests_box" name="query_interests" value="<%= @the_recommendation.interests %>">
+      </div>
+
+      <div>
+        <label for="other_content_box">
+          Other content
+        </label>
+
+        <input type="text" id="other_content_box" name="query_other_content" value="<%= @the_recommendation.other_content %>">
+      </div>
+
+      <button>
+        Update recommendation
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

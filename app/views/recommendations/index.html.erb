@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all recommendations
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new recommendation
+    </h2>
+
+    <form action="/insert_recommendation" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="visit_type_box">
+          Visit type
+        </label>
+
+        <input type="text" id="visit_type_box" name="query_visit_type">
+      </div>
+
+      <div>
+        <label for="interests_box">
+          Interests
+        </label>
+
+        <input type="text" id="interests_box" name="query_interests">
+      </div>
+
+      <div>
+        <label for="other_content_box">
+          Other content
+        </label>
+
+        <input type="text" id="other_content_box" name="query_other_content">
+      </div>
+
+      <button>
+        Create recommendation
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Visit type
+        </th>
+
+        <th>
+          Interests
+        </th>
+
+        <th>
+          Other content
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_recommendations.each do |a_recommendation| %>
+      <tr>
+        <td>
+          <%= a_recommendation.id %>
+        </td>
+
+        <td>
+          <%= a_recommendation.user_id %>
+        </td>
+
+        <td>
+          <%= a_recommendation.visit_type %>
+        </td>
+
+        <td>
+          <%= a_recommendation.interests %>
+        </td>
+
+        <td>
+          <%= a_recommendation.other_content %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_recommendation.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_recommendation.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/recommendations/<%= a_recommendation.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
