@@ -66,11 +66,11 @@
 
 <hr>
 
-<%= Message.all.where({ :rec_id => @the_recommendation.id }) %>
+<% @messages = Message.all.where({ :rec_id => @the_recommendation.id }) %>
 
 <dl>
-  each do
-
-  <dt>user</dt>
-  <dd>The message</dd>
+  <% @messages.each do |a_message| %>
+    <dt><%= a_message.role%></dt>
+    <dd><%= a_message.content%></dd>
+  <% end %>
 </dl>
