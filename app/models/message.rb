@@ -10,4 +10,6 @@
 #  rec_id     :integer
 #
 class Message < ApplicationRecord
+  belongs_to :rec_thread, required: true, class_name: "Recommendation", foreign_key: "rec_id"
+
 end
