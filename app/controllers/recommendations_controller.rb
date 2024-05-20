@@ -36,8 +36,19 @@ class RecommendationsController < ApplicationController
 
       #create the assistant response
 
-      OpenAI::Client.new(access_token:)
+      prior_messages = [
+        { role: "user", content: "system_message.content"}
+      ]
 
+      client = OpenAI::Client.new(access_token: ENV.fetch("OPENAI_KEY"))
+
+      api_response = client.chat(
+        parameters: {
+            model: "gpt-3.5-turbo", # Required.
+            messages: prior_messages, # Required.
+            temperature: 0.7})
+
+        pp api_response
 
       redirect_to("/recommendations/#{the_recommendation.id}", { :notice => "Recommendation created successfully." })
     else
