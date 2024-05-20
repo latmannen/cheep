@@ -24,9 +24,17 @@ class RecommendationsController < ApplicationController
     the_recommendation.interests = params.fetch("query_interests")
     the_recommendation.other_content = params.fetch("query_other_content")
 
+    #create the system message
+    system_message = Message.new
+    system_message.rec_id = the_recommendation.id
+    system_message.role = "system"
+    system_message.content = "You are a an expert on recommending activities, restuarants, and generally things to do in the city of chicago. you should respond succinctly when giving recommendations. The person asking for advice is a #{the_recommendation.visit_type}, and your responses should reflect that. The person asking for advice also has these interests: #{the_recommendation.interests}. Please tailor your recommendations to those interests, but feel free to provide your best recommendations that might fall outside of those interests as well. Finally, here is some additional context that the user might provide: #{the_recommendation.other_content}"
+
+    system_message.save
+
     if the_recommendation.valid?
       the_recommendation.save
-      redirect_to("/recommendations", { :notice => "Recommendation created successfully." })
+      redirect_to("/recommendations/#{the_recommendation.id}", { :notice => "Recommendation created successfully." })
     else
       redirect_to("/recommendations", { :alert => the_recommendation.errors.full_messages.to_sentence })
     end
